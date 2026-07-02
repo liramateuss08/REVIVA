@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Turmas de {{ curso }}</title>
+    <style>
+        /* Fundo da tela com a cor solicitada */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #1800ad; 
+            margin: 0;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh;
+            position: relative; /* Necessário para a logo ficar no canto */
+        }
+        
+        /* Logo no canto superior esquerdo */
+        .logo-topo {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            max-width: 160px; /* Menor que a da tela inicial para não roubar a atenção */
+            height: auto;
+        }
+
+        /* Cartão branco central */
+        .cartao {
+            background-color: #ffffff;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 650px;
+            width: 90%;
+        }
+
+        h2 { 
+            color: #333; 
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Grid para alinhar os botões das turmas 2 a 2 */
+        .grid-botoes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        /* Estilo dos botões das turmas (mesmo padrão da tela inicial) */
+        .btn-turma { 
+            background-color: #333333; 
+            color: #f8f8f8; 
+            padding: 18px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            text-decoration: none; 
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-turma:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0.9;
+        }
+
+        /* Botão de voltar profissional (estilo Outline) */
+        .btn-voltar {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333333;
+            background-color: transparent;
+            border: 2px solid #333333;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-voltar:hover {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        /* Ajuste para telas de celular */
+        @media (max-width: 600px) {
+            .grid-botoes {
+                grid-template-columns: 1fr; /* Fica uma abaixo da outra no celular */
+            }
+            .logo-topo {
+                top: 15px;
+                left: 15px;
+                max-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Reviva Educação" class="logo-topo">
+
+    <div class="cartao">
+        <h2>Turmas de {{ curso }}</h2>
+        
+        <div class="grid-botoes">
+            {% for sala in salas %}
+                <a href="/turma/{{ sala }}" class="btn-turma">{{ sala }}</a>
+            {% endfor %}
+        </div>
+
+        <a href="/" class="btn-voltar">⬅ Voltar à Tela Principal</a>
+    </div>
+
+</body>
+</html>

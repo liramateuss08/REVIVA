@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Reviva Educação</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #1800ad 0%, #0a0045 100%);
+            margin: 0; display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; padding: 40px 10px;
+        }
+        .cartao {
+            background-color: #ffffff; padding: 40px; border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); width: 100%; max-width: 800px;
+        }
+        .logo { max-width: 200px; height: auto; margin-bottom: 20px; }
+        .cabecalho-dash { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        h2 { color: #333; margin: 0; }
+        #relogio { font-size: 18px; font-weight: 700; color: #000000; font-family: 'Consolas', monospace; }
+        .data-container { margin-bottom: 25px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f4f4f4; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="cartao">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Reviva Educação" class="logo">
+        <div class="cabecalho-dash">
+            <h2>Dashboard: {{ turma }}</h2>
+            <div id="relogio">00:00:00</div>
+        </div>
+        <div class="data-container">
+            <label style="font-weight: bold; color: #555;">Data de Consulta:</label>
+            <input type="date" id="data-selecao" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        </div>
+        <table>
+            <thead><tr><th>Nome</th><th>Check-in</th><th>Check-out</th><th>Total</th></tr></thead>
+            <tbody>
+                {% for aluno in alunos %}
+                <tr><td>{{ aluno.nome }}</td><td>{{ aluno.checkin }}</td><td>{{ aluno.checkout }}</td><td>{{ aluno.total }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.getElementById('data-selecao').valueAsDate = new Date();
+        function atualizarRelogio() {
+            document.getElementById('relogio').innerText = new Date().toLocaleTimeString();
+        }
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
+    </script>
+</body>
+</html>

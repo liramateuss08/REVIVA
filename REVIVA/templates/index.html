@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviva Educação - Ponto</title>
+    <style>
+        /* Fundo da tela com a cor solicitada */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #1800ad; 
+            margin: 0;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; /* Ocupa a tela inteira */
+        }
+        
+        /* Cartão branco central para dar contraste à logo preta */
+        .cartao {
+            background-color: #ffffff;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 650px;
+            width: 90%;
+        }
+
+        /* Configuração da Logo */
+        .logo {
+            max-width: 280px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        h2 { 
+            color: #333; 
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Container para deixar os botões lado a lado */
+        .botoes-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espaço entre os botões */
+        }
+
+        /* Estilo base dos botões */
+        .btn { 
+            flex: 1; /* Faz os botões terem o mesmo tamanho */
+            padding: 20px; 
+            font-size: 18px; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            text-decoration: none; 
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Botão Esquerdo: Marketing */
+        .btn-mkt { 
+            background-color: #333333; /* Cinza escuro elegante */
+            color: white; 
+        }
+
+        /* Botão Direito: Desenvolvimento de Sistemas */
+        .btn-tds { 
+            background-color: #333333; /* Azul claro combinando com a logo */
+            color: #f8f8f8; /* Texto em azul escuro para dar contraste e combinar com o fundo */
+        }
+
+        /* Efeito de hover (quando passa o mouse) */
+        .btn:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cartao">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Reviva Educação" class="logo">
+        
+        <h2>Selecione o Curso</h2>
+        
+        <div class="botoes-container">
+            <a href="/curso/Marketing" class="btn btn-mkt">Marketing</a>
+            
+            <a href="/curso/TDS" class="btn btn-tds">Desenvolvimento de Sistemas</a>
+        </div>
+    </div>
+
+</body>
+</html>
